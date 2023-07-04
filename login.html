@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <script src="storage.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/1ab94d0eba.js" crossorigin="anonymous"></script>
+    <title>Login</title>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+    * {
+        margin: 0;
+        border: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+    }
+
+    body {
+        background: linear-gradient(45deg, #1ebb5f, #1ecf5f);
+        background-repeat: no-repeat;
+        min-height: 100vh;
+        min-width: 100vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    main.container{
+        background-color: white;
+        max-width: 350px;
+        min-height: 40vh;
+        padding: 2rem;
+        box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+        border-radius: 8px;
+    }
+
+    main h2 {
+        font-weight: 600;
+        margin-bottom: 2rem;
+        position: relative;
+    }
+
+    main h2::before {
+        content: '';
+        position: absolute;
+        height: 4px;
+        width: 25px;
+        bottom: 3px;
+        left: 0;
+        border-radius: 8px;
+        background: linear-gradient(45deg, #1ebb5f, #1ecf5f);
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .input-field{
+        position: relative;
+    }
+
+    form .input-field:first-child {
+        margin-bottom: 1.5rem;
+    }
+
+    .input-field .underline::before{
+        content: '';
+        position: absolute;
+        height: 1px;
+        width: 100%;
+        bottom: -5px;
+        left: 0;
+        background:rgba(0, 0, 0, 0.2)
+    }
+
+    .input-field .underline::after{
+        content: '';
+        position: absolute;
+        height: 1px;
+        width: 100%;
+        bottom: -5px;
+        left: 0;
+        background: linear-gradient(45deg, #1ebb5f, #1ecf5f);
+        transform: scaleX(0);
+        transition: all .3s ease-in-out;
+        transform-origin: left;
+    }
+
+    .input-field input:focus ~ .underline::after{
+        transform: scaleX(1);
+    }
+
+    .input-field input{
+        outline: none;
+        font-size: 0.9rem;
+        color: rgba(0, 0, 0, 0.7)
+    }
+
+    .input-field input::placeholder {
+        color: rgba(0, 0, 0, 0.5);
+    }
+
+    form input[type="submit"] {
+        margin-top: 2rem;
+        padding: 0.4rem;
+        width: 100%;
+        background: linear-gradient(to left, #21bf58, #23d962);
+        cursor: pointer;
+        color: white;
+        font-size: 0.9rem;
+        font-weight: 300;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+    }
+
+    form input[type="submit"]:hover {
+        letter-spacing: 0.5px;
+        background: linear-gradient(to right, #21bf58, #23d962);
+    }
+
+    .footer {
+        display: flex;
+        flex-direction: column;
+        margin-top: 1rem;
+    }
+
+    .footer span {
+        color: rgba(0, 0, 0, 0.7);
+        font-size: 0.8rem;
+        text-align: center;
+    }
+
+    .footer .social-field {
+        padding: 0.4rem;
+        border-radius: 4px;
+        font-size: 0.85rem;
+        width: 100%;
+        cursor: pointer;
+        margin-top: 1rem;
+    }
+
+    .footer .social-field a {
+        text-decoration: none;
+        color: white;
+    }
+
+    .footer .social-field a i {
+        margin: 0 0.5rem;
+        width: 15px;
+    }
+
+
+    .footer .google {
+        background: linear-gradient(to right, #21bf58, #23d962);
+    }
+
+    .footer .facebook {
+        background: linear-gradient(to right, #21bf58, #23d962);
+    }
+
+    .LogIn a {
+        text-decoration: none;
+        color: white;
+    }
+
+    .LogIn{
+        background: linear-gradient(to left, #21bf58, #23d962);
+        padding: 0.4rem;
+        border-radius: 4px;
+        font-size: 0.85rem;
+        width: 100%;
+        cursor: pointer;
+        margin-top: 1rem;
+    }
+
+</style>
+<body>
+    <main class="container">
+       <h2>Login</h2>
+       <div id="msgError"></div>
+       <form onsubmit="verifyLogin()">
+        <div class="input-field">
+                <input type="text" name="username" id="email"
+                    placeholder="Insira seu email">
+                <div class="underline"></div>
+            </div>
+            <div class="input-field">
+                <input type="password" name="password" id="password"
+                    placeholder="Insira sua senha">
+                <div class="underline"></div>
+            </div>
+            <div class="footer">
+                <span><a href="cad.html"> Esqueci minha senha</a></span>
+            </div>
+            
+            <button class="LogIn" type="submit">Entrar</a></button> </form>
+
+            <div class="footer">
+            <span>Ou conecte-se com</span>
+            <div class="social-fields">
+                <div class="social-field google">
+                    <a href="home.html">
+                        <i class="fab fa-google"></i>
+                        Login com uma conta Google
+                    </a>
+                </div>
+                <div class="social-field facebook">
+                    <a href="home.html">
+                        <i class="fab fa-facebook-f"></i>
+                        Login com Fecebook
+                    </a>
+                </div>
+                <div class="footer">
+                    <span>Não tem uma conta?<a href="cad.html"> Crie uma</a></span>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="localStorageLogin.js"></script>
+</body>
+</html>

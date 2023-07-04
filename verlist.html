@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="verlist.css">
+    
+    <title>Compra Junto</title>
+    <script src="verlist.js"></script>
+</head>
+<body>
+    <div class="container">
+      <header>
+        <div id="logo">
+          <p><a href="home.html"><b>Compra<b id="corj">Junto</b></b></a></p>          
+        </div>
+        <input type="checkbox" id="checkbox" class="checkbox" />
+        <label for="checkbox" class="label-menu">Menu<span class="Menu"></span></label>        
+        <ul id="menu">
+          <li><a href="home.html">Início</a></li>
+          <li><a href="editLista.html">Criar Listas</a></li>
+          <li><a href="verlist.html">Ver Listas</a></li>
+          <li><a href="#">Sobre</a></li> <!--NAO IMPLEMENTADO-->                                   
+        </ul>
+        <div class="sair">
+          <ul id="sair">
+            <li><a onclick="sair()" href="login.html">Sair</a></li>  
+          </ul> 
+        </div>
+      </header>
+
+      <div id="content-wrapper">
+        <article id="main-content">
+          <div id="list-card">
+            <h2 id="list-title">***Nome da Lista***</h2>
+            <p id="list-content">Aqui está o conteúdo da lista.</p>
+          </div>
+        </article>
+      
+        <aside id="sidebar">
+          <button class="sidebar-button" data-list="Lista 1">Lista 1</button>
+          <button class="sidebar-button" data-list="Lista 2">Lista 2</button>
+          <button class="sidebar-button" data-list="Lista 3">Lista 3</button>
+          <button class="sidebar-button" data-list="Lista 4">Lista 4</button>
+          <button class="sidebar-button" data-list="Lista 5">Lista 5</button>
+          <a href="editLista.html"><button class="sidebar-button" data-list="+">+</button></a>
+        </aside>
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; 2023 Grupo <b>Compra<b id="corj">Junto</b></b>...</p>
+    </footer>
+
+    <script src="verlis.js"></script>
+</body>
+</html>

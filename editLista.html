@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://kit.fontawesome.com/b8ce20cc80.js" crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <link rel="stylesheet" href="editLista.css">
+    
+    <title>Card idea</title>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <h3 class="compra">Compra</h3>
+            <h3 class="junto">Junto</h3>
+        </div>
+    </header>
+    
+    <aside id="shortcuts">
+        <nav class="sidemenu-nav">
+            <ul>
+                <li>
+                    <a href="#" class="sidemenu-logo">
+                        <img src="https://picsum.photos/200" alt="sla">
+                        <span class="nav-item" id="username">Nome de Usuário</span>
+                    </a>
+                </li>
+                <li>
+                    <!--LINK PARA A PÁGINA INICIAL-->
+                    <a href="home.html">
+                        <i class="sidemenu-icon fa-solid fa-house"></i>
+                        <span class="nav-item">Página Inicial</span>
+                    </a>
+                </li>
+                <li>
+                    <!--LINK PARA A PÁGINA DE LISTAS-->
+                    <a href="verlist.html">
+                        <i class="sidemenu-icon fa-regular fa-rectangle-list"></i>
+                        <span class="nav-item">Minhas Listas</span>
+                    </a>
+                </li>
+                <li>
+                    <!--NÃO IMPLEMENTADO-->
+                    <a href="#">
+                        <i class="sidemenu-icon fa-solid fa-user"></i>
+                        <span class="nav-item">Minha Conta</span>
+                    </a>
+                </li>
+                <li>
+                    <!--LINK PARA A PÁGINA DE LOGIN-->
+                    <a href="login.html">
+                        <i class="sidemenu-icon fa-solid fa-right-from-bracket"></i>
+                        <span class="nav-item">Sair</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+ 
+    <aside id="itens">
+        <nav class="sidemenu-nav">
+            <form id="customProduct">
+                <div class="input-group">
+                    <input type="text" name="product" id="product-add" class="form-control" placeholder="adicionar produto">
+                    <button class="btn" type="submit" id="product-btn">
+                        <i class="fa-solid fa-angle-right"></i>
+                    </button>
+                </div>
+            </form>
+            <hr>
+            <ul id="itens-list">
+                
+            </ul>
+        </nav>
+    </aside>
+
+    <main id="cards-container">
+        <div class="card" data-id="1" onclick="ProcessSuggestion(this)">
+            <div class="card-title">
+                <input type="text" class="card-input" autocomplete="off" placeholder="digite alguma seção de mercado..." onkeydown="EnterPressed(event)" oninput="PredictText(this)">
+                <span id="suggestion" class="card-suggestion"></span>
+            </div>
+            <div class="card-body">
+                <ul class="list">
+
+                </ul>
+            </div>
+            <div class="card-button">
+                <button class="new-card" onclick="NewCard()">Nova seção</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <button class="modify" id="export-btn">
+            <i class="fa-sharp fa-solid fa-download"></i>
+            Exportar
+        </button>
+        <button class="modify" id="share-btn">
+            <i class="fa-sharp fa-solid fa-share"></i>
+            Compartilhar
+        </button>
+        <button class="modify" id="save-btn">
+            <i class="fa-sharp fa-solid fa-floppy-disk"></i>
+            Salvar
+        </button>
+    </footer>
+
+    <div class="overlay" id="overlay"></div>
+
+    <dialog id="save-modal">
+        <form id="save-form">
+            <div class="modal-header">
+                <div>
+                    <i class="fa-sharp fa-solid fa-floppy-disk"></i>
+                    Salvar
+                </div>
+                <button id="close-save-modal"><i class="fa-solid fa-xmark fa-lg"></i></button>
+            </div>
+            <div class="modal-body" id="save-modal-body">
+                <label for="">Nome</label>
+                <input type="text" placeholder="Lista_de_compras" name="list_title" id="list_title" required>
+            </div>
+            <div class="modal-footer">
+                <button id="save-modal-cancelbtn" type="reset">cancelar</button>
+                <button id="save-modal-savebtn" type="submit">salvar</button>
+            </div>
+        </form>
+    </dialog>
+
+    <dialog id="share-modal">
+        <div class="modal-header">
+            <div>
+                <i class="fa-sharp fa-solid fa-share"></i>
+                Compartilhar
+            </div>
+            <button id="close-share-modal"><i class="fa-solid fa-xmark fa-lg"></i></button>
+        </div>
+        <form id="share-form">
+            <div class="modal-body" id="share-modal-body">
+                <div id="share-colab">
+                    <label for="">Meus colaboradores</label>
+                    <div class="input-group">
+                        <input type="text" name="colabInput" class="form-control" placeholder="nome de usuário">
+                        <button class="btn" disabled>@</button>
+                    </div>
+                </div>
+                <div id="share-link">
+                    <label for="">Copiar link</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="hash" disabled>
+                        <button id="clipboard_btn" class="btn"><i class="fa-regular fa-clipboard"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="share-modal-cancelbtn">cancelar</button>
+                <button id="share-modal-savebtn" type="submit">compartilhar</button>
+            </div>
+        </form>
+    </dialog>
+
+    <script defer src="editLista.js"></script>
+</body>
+</html>
